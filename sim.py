@@ -1,41 +1,42 @@
 #Projectile Motion Simulator
 
 import math
+from numpy import *
+from pylab import *
 
-#user inputs
-initial_height = float (input("Enter Initial Height (m): "))
-initial_velocity = float (input("Enter Initial Velocity (m/s): "))
-launch_angle = float (input("Enter launch angle (degrees): "))
+initial_velocity = float(input ("Enter initial velocity (m/s): "))
+initial_height = float(input ("Enter initial height (m): "))
+launch_angle = float(input("Enter launch angle (degree): "))
 
-#Gravity
+#converting angle
+launch_degree = math.radians(launch_angle)
+
+#velocity components
+vx = initial_velocity * math.cos(launch_degree)
+vy = initial_velocity * math.sin(launch_degree)
+
+#gravity
 earth_gravity = 9.8
+mercury_gravity = 3.7
+venus_gravity = 8.9
+moon_gravity = 1.6
+mars_gravity = 3.7
+jupiter_gravity = 23.1
+saturn_gravity = 9.0
+uranus_gravity = 8.7
+neptune = 11.0
+pluto = 0.7
 
-#Converting angle
-angle_rad = math.radians(launch_angle)
 
-#Velocity Components
-vx = initial_velocity * math.cos(launch_angle)
-vy = initial_velocity * math.sin(launch_angle)
 
-#Calculating Time of Flight
-# We gonna use the equation: y = y0 + vy*t - 0.5*g*t^2
-#This one is for finding t when y = 0
+if initial_height <= 0:
+    time_travel = round((2* vy) / earth_gravity,2)
+    max_height = round((vy ** 2) / (2 * earth_gravity),2)
+    final_position = round(vx * time_travel,2)
+elif initial_height != 0:
+    
 
-a = -0.5 * earth_gravity
-b = vy
-c = initial_height
+print ("Time Travel ", time_travel )
+print ("Maximum Height ", max_height)
+print ("Final Position ", final_position)
 
-discriminant = b ** 2 - 4*a*c
-time_of_flight = (-b -math.sqrt(discriminant)) / (2 * a)
-
-# ----- FINAL HORIZONTAL POSITION -----
-final_position = vx * time_of_flight
-
-# ----- MAXIMUM HEIGHT -----
-max_height = initial_height + (vy**2) / (2 * earth_gravity)
-
-# ----- OUTPUT -----
-print("\n--- RESULTS ---")
-print(f"Time of flight: {time_of_flight:.2f} s")
-print(f"Final horizontal position: {final_position:.2f} m")
-print(f"Maximum height: {max_height:.2f} m")
