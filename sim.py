@@ -1,8 +1,8 @@
 #Projectile Motion Simulator
 
 import math
-from numpy import *
-from pylab import *
+import numpy as np
+import matplotlib.pyplot as plt
 
 initial_velocity = float(input ("Enter initial velocity (m/s): "))
 initial_height = float(input ("Enter initial height (m): "))
@@ -34,12 +34,25 @@ if initial_height <= 0:
     final_position = vx * time_travel
 #if the initial height is greater than 0 meter
 elif initial_height != 0:
-    time_travel = (vy + sqrt(vy**2 + 2 * grav * initial_height)) / grav
+    time_travel = (vy + math.sqrt(vy**2 + 2 * grav * initial_height)) / grav
     max_height = initial_height + (vy**2) / (2 * grav)
     final_position = vx * time_travel
 
 print("Time Travel: ", round(time_travel, 2), "s")
 print("Maximum Height: ", round(max_height, 2), "m")
 print("Final Position: ", round(final_position, 2),  "m")
+
+#graphing the result
+t = np.linspace(0, time_travel, 100)
+
+x = vx * t
+y = initial_height + vy * t - 0.5 * grav * t**2
+
+plt.plot(x, y)
+plt.xlabel("Distance (m)")
+plt.ylabel("Height (m)")
+plt.title("Projectile Motion")
+plt.show()
+
 
 
