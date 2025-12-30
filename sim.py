@@ -34,7 +34,7 @@ def launch():
     grav = None
     for planet in planet_gravity:
         if planet[0] == gravity:
-            grav[1] = planet
+            grav = planet [1]
         
     if grav is None:
             return
@@ -52,7 +52,7 @@ def launch():
     final_position = vx * time_travel
 
     #to update the label
-    
+
 
     
 
