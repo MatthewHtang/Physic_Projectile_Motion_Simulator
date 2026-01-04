@@ -44,5 +44,10 @@ print("Time Travel: ", round(time_travel, 2), "s")
 print("Maximum Height: ", round(max_height, 2), "m")
 print("Final Position: ", round(final_position, 2),  "m")
 
+t = np.linspace(0,time_travel,100)
+x = t * vx
+y = initial_height + vy * t - 0.5 * grav * t**2
 
+plt.plot(x,y)
 
+plt.show()
