@@ -55,7 +55,7 @@ def launch():
     height_label.config(text=f"Maximum Height: {max_height :.2f} m")
     position_label.config(text=f"Final Position: {final_position :.2f} m")
 
-    #trajectory
+    #the actual trajectory
     t = np.linspace(0, time_travel, 100)
     x_vals = vx * t
     y_vals = initial_height + vy * t - 1/2 * grav * t**2
